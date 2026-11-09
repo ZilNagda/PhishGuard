@@ -370,8 +370,16 @@ if not history_df.empty:
         use_container_width=True,
         hide_index=True
     )
+csv_data = history_df.to_csv(index=False).encode("utf-8")
 
-    if st.button("Clear Scan History"):
+st.download_button(
+    label="📥 Download Scan History (CSV)",
+    data=csv_data,
+    file_name="phishguard_scan_history.csv",
+    mime="text/csv"
+)
+    
+if st.button("Clear Scan History"):
 
         clear_scan_history()
 
